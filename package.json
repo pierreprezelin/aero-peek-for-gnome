@@ -4,21 +4,16 @@
     "sourceType": "module",
     "scripts": {
         "prepare": "husky",
-        "format": "bunx prettier . --write",
-        "lint": "bunx eslint '**/*.{js}' --cache --fix",
+        "check": "biome check --write",
         "translations:extract": "xgettext --from-code=UTF-8 --language=JavaScript --keyword=_ --output=po/aero-peek-for-gnome.pot --package-name=aero-peek-for-gnome --package-version=1 --copyright-holder='Pierre Prezelin' --msgid-bugs-address=pierreprezelin.pro@gmail.com prefs.js",
         "translations:compile": "find po -name '*.po' | while read f; do lang=$(basename \"$f\" .po); mkdir -p \"locale/$lang/LC_MESSAGES\" && msgfmt \"$f\" -o \"locale/$lang/LC_MESSAGES/aero-peek-for-gnome.mo\"; done"
     },
     "devDependencies": {
-        "@eslint/js": "^10.0.1",
-        "eslint": "^10.6.0",
-        "globals": "^17.7.0",
+        "@biomejs/biome": "^2.6.5",
         "husky": "^9.1.7",
-        "lint-staged": "^17.0.8",
-        "prettier": "^3.9.10"
+        "lint-staged": "^17.0.8"
     },
     "lint-staged": {
-        "*.js": "eslint --cache --fix",
-        "*.--write": "prettier --write"
+        "*.{js,json}": "biome check --write --no-errors-on-unmatched"
     }
 }

@@ -25,7 +25,7 @@ const AeroPeekButton = GObject.registerClass(
 
             const iconName =
                 this._extension._settings.get_string('toggle-icon');
-            let iconParams = {
+            const iconParams = {
                 style_class: 'system-status-icon',
             };
 
@@ -92,7 +92,8 @@ export default class AeroPeekForWindows extends Extension {
         this._indicator?.destroy();
         this._indicator = null;
 
-        this._settingsConnections?.forEach(id => this._settings.disconnect(id));
+        for (const id of this._settingsConnections ?? [])
+            this._settings.disconnect(id);
         this._settingsConnections = null;
         this._settings = null;
 
@@ -134,10 +135,9 @@ export default class AeroPeekForWindows extends Extension {
         const validWindows = windows.filter(w => !this._shouldIgnore(w));
         const hasUnminimized = validWindows.some(w => !w.minimized);
 
-        if (hasUnminimized) {
-            validWindows.forEach(w => w.minimize());
-        } else {
-            validWindows.forEach(w => w.unminimize());
+        for (const w of validWindows) {
+            if (hasUnminimized) w.minimize();
+            else w.unminimize();
         }
     }
 

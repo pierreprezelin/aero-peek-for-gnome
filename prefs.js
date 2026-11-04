@@ -86,7 +86,7 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
         ];
         const currentPosition = settings.get_string('position-in-panel');
         const positionIdx = positionValues.indexOf(currentPosition);
-        positionRow.set_selected(positionIdx >= 0 ? positionIdx : 0);
+        positionRow.set_selected(Math.max(positionIdx, 0));
 
         positionRow.connect('notify::selected', () => {
             settings.set_string(
@@ -105,7 +105,7 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
             const idx = positionValues.indexOf(
                 settings.get_string('position-in-panel')
             );
-            positionRow.set_selected(idx >= 0 ? idx : 0);
+            positionRow.set_selected(Math.max(idx, 0));
         });
         positionRow.add_suffix(positionResetButton);
 
@@ -168,7 +168,7 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
                 );
             }
 
-            if (initialFolder && initialFolder.query_exists(null)) {
+            if (initialFolder?.query_exists(null)) {
                 fileDialog.set_initial_folder(initialFolder);
             }
 
@@ -356,7 +356,7 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
             const eventController = new Gtk.EventControllerKey();
             eventController.connect(
                 'key-pressed',
-                (controller, keyval, keycode, state) => {
+                (_controller, keyval, _keycode, state) => {
                     if (keyval === Gdk.KEY_Escape) {
                         dialog.close();
                         return true;
