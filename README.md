@@ -1,6 +1,6 @@
 # Aero Peek for GNOME
 
-Show/Hide all open desktop windows with one-click.
+Show/Hide all open desktop windows with one click.
 
 ## Install
 
