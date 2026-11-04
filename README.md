@@ -38,4 +38,5 @@ Show/Hide all open desktop windows with one click.
 
 | Version | Changes                                   |
 | ------- | ----------------------------------------- |
+| 2       | Added support for GNOME 51                |
 | 1       | Initial release with support for GNOME 50 |
