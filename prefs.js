@@ -164,7 +164,7 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
                 initialFolder = file.get_parent();
             } else {
                 initialFolder = Gio.File.new_for_path(
-                    '/usr/share/icons/Adwaita/symbolic/devices/'
+                    '/usr/share/icons/Adwaita/symbolic/ui/'
                 );
             }
 

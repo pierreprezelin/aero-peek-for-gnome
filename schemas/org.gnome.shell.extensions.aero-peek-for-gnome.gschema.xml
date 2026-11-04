@@ -13,7 +13,7 @@
             <description>Where to place the toggle on the panel.</description>
         </key>
         <key name="toggle-icon" type="s">
-            <default>'computer-symbolic'</default>
+            <default>'focus-windows-symbolic'</default>
             <summary>Toggle Icon (.svg)</summary>
             <description>Icon file used for the panel toggle.</description>
         </key>
