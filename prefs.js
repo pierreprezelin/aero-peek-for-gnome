@@ -24,6 +24,92 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
             return btn;
         };
 
+        const makeIconRow = (key, title) => {
+            const iconRow = new Adw.ActionRow({
+                title,
+                subtitle: _('Icon file used for the panel toggle.'),
+            });
+
+            const iconButton = new Gtk.Button({
+                valign: Gtk.Align.CENTER,
+                tooltip_text: _('Click to change icon'),
+            });
+            iconButton.set_child(new Gtk.Label());
+
+            const updateIconLabel = () => {
+                const iconName = settings.get_string(key);
+                let label;
+
+                if (iconName.startsWith('/')) {
+                    label = GLib.basename(iconName);
+                } else {
+                    label = `${iconName}.svg`;
+                }
+                iconButton.get_child().set_label(label);
+            };
+            updateIconLabel();
+
+            const iconChangedId = settings.connect(
+                `changed::${key}`,
+                updateIconLabel
+            );
+            window.connect('destroy', () => settings.disconnect(iconChangedId));
+
+            iconButton.connect('clicked', () => {
+                const fileDialog = new Gtk.FileDialog({
+                    title: _('Choose an icon'),
+                });
+
+                const filter = new Gtk.FileFilter();
+                filter.add_mime_type('image/svg+xml');
+                filter.set_name(_('Images (SVG)'));
+
+                const filterList = new Gio.ListStore({
+                    item_type: Gtk.FileFilter,
+                });
+                filterList.append(filter);
+                fileDialog.set_filters(filterList);
+
+                const currentIcon = settings.get_string(key);
+                let initialFolder;
+
+                if (currentIcon.startsWith('/')) {
+                    const file = Gio.File.new_for_path(currentIcon);
+                    initialFolder = file.get_parent();
+                } else {
+                    initialFolder = Gio.File.new_for_path(
+                        '/usr/share/icons/Adwaita/symbolic/devices/'
+                    );
+                }
+
+                if (initialFolder?.query_exists(null)) {
+                    fileDialog.set_initial_folder(initialFolder);
+                }
+
+                fileDialog.open(window, null, (dialog, result) => {
+                    try {
+                        const file = dialog.open_finish(result);
+                        if (file) {
+                            const path = file.get_path();
+                            if (path) settings.set_string(key, path);
+                        }
+                    } catch (e) {
+                        console.debug(e);
+                    }
+                });
+            });
+
+            const iconBox = new Gtk.Box({
+                spacing: 12,
+                valign: Gtk.Align.CENTER,
+            });
+            iconBox.append(iconButton);
+            iconBox.append(makeResetButton(key));
+
+            iconRow.add_suffix(iconBox);
+            return iconRow;
+        };
+
         /**
          * Behaviour
          */
@@ -111,89 +197,20 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
 
         groupAspect.add(positionRow);
 
-        // Toggle icon
+        // Toggle icons
 
-        const iconRow = new Adw.ActionRow({
-            title: _('Toggle icon (.svg)'),
-            subtitle: _('Icon file used for the panel toggle.'),
-        });
-
-        const iconButton = new Gtk.Button({
-            valign: Gtk.Align.CENTER,
-            tooltip_text: _('Click to change icon'),
-        });
-        iconButton.set_child(new Gtk.Label());
-
-        const updateIconLabel = () => {
-            const iconName = settings.get_string('toggle-icon');
-            let label;
-
-            if (iconName.startsWith('/')) {
-                label = GLib.basename(iconName);
-            } else {
-                label = `${iconName}.svg`;
-            }
-            iconButton.get_child().set_label(label);
-        };
-        updateIconLabel();
-
-        const iconChangedId = settings.connect(
-            'changed::toggle-icon',
-            updateIconLabel
+        groupAspect.add(
+            makeIconRow(
+                'windows-shown-icon',
+                _('Icon when windows are shown (.svg)')
+            )
         );
-        window.connect('destroy', () => settings.disconnect(iconChangedId));
-
-        iconButton.connect('clicked', () => {
-            const fileDialog = new Gtk.FileDialog({
-                title: _('Choose an icon'),
-            });
-
-            const filter = new Gtk.FileFilter();
-            filter.add_mime_type('image/svg+xml');
-            filter.set_name(_('Images (SVG)'));
-
-            const filterList = new Gio.ListStore({item_type: Gtk.FileFilter});
-            filterList.append(filter);
-            fileDialog.set_filters(filterList);
-
-            const currentIcon = settings.get_string('toggle-icon');
-            let initialFolder;
-
-            if (currentIcon.startsWith('/')) {
-                const file = Gio.File.new_for_path(currentIcon);
-                initialFolder = file.get_parent();
-            } else {
-                initialFolder = Gio.File.new_for_path(
-                    '/usr/share/icons/Adwaita/symbolic/ui/'
-                );
-            }
-
-            if (initialFolder?.query_exists(null)) {
-                fileDialog.set_initial_folder(initialFolder);
-            }
-
-            fileDialog.open(window, null, (dialog, result) => {
-                try {
-                    const file = dialog.open_finish(result);
-                    if (file) {
-                        const path = file.get_path();
-                        if (path) settings.set_string('toggle-icon', path);
-                    }
-                } catch (e) {
-                    console.debug(e);
-                }
-            });
-        });
-
-        const iconBox = new Gtk.Box({
-            spacing: 12,
-            valign: Gtk.Align.CENTER,
-        });
-        iconBox.append(iconButton);
-        iconBox.append(makeResetButton('toggle-icon'));
-
-        iconRow.add_suffix(iconBox);
-        groupAspect.add(iconRow);
+        groupAspect.add(
+            makeIconRow(
+                'windows-collapsed-icon',
+                _('Icon when windows are collapsed (.svg)')
+            )
+        );
 
         /**
          * Peek

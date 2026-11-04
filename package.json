@@ -5,6 +5,8 @@
     "scripts": {
         "prepare": "husky",
         "check": "biome check --write",
+        "schemas:compile": "glib-compile-schemas --strict schemas/",
+        "pack": "gnome-extensions pack --podir=po --force .",
         "translations:extract": "xgettext --from-code=UTF-8 --language=JavaScript --keyword=_ --output=po/aero-peek-for-gnome.pot --package-name=aero-peek-for-gnome --package-version=1 --copyright-holder='Pierre Prezelin' --msgid-bugs-address=pierreprezelin.pro@gmail.com prefs.js",
         "translations:compile": "find po -name '*.po' | while read f; do lang=$(basename \"$f\" .po); mkdir -p \"locale/$lang/LC_MESSAGES\" && msgfmt \"$f\" -o \"locale/$lang/LC_MESSAGES/aero-peek-for-gnome.mo\"; done"
     },

@@ -12,9 +12,14 @@
             <summary>Position on panel</summary>
             <description>Where to place the toggle on the panel.</description>
         </key>
-        <key name="toggle-icon" type="s">
-            <default>'focus-windows-symbolic'</default>
-            <summary>Toggle Icon (.svg)</summary>
+        <key name="windows-shown-icon" type="s">
+            <default>'computer-symbolic'</default>
+            <summary>Icon when windows are shown (.svg)</summary>
+            <description>Icon file used for the panel toggle.</description>
+        </key>
+        <key name="windows-collapsed-icon" type="s">
+            <default>'computer-symbolic'</default>
+            <summary>Icon when windows are collapsed (.svg)</summary>
             <description>Icon file used for the panel toggle.</description>
         </key>
         <key name="peek-on-hover" type="b">

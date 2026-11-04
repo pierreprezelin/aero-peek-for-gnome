@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aero-peek-for-gnome 1\n"
 "Report-Msgid-Bugs-To: pierreprezelin.pro@gmail.com\n"
-"POT-Creation-Date: 2026-06-30 14:11+0200\n"
+"POT-Creation-Date: 2026-11-04 21:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,136 +17,138 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:21
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:101
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:378
+#: prefs.js:21 prefs.js:187 prefs.js:400
 msgid "Reset to default"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:32
-msgid "Behaviour"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:37
-msgid "Keep active window"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:38
-msgid "Do not hide the active window on toggle."
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:60
-msgid "Aspect"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:67
-msgid "Position on panel"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:68
-msgid "Where to place the toggle on the panel."
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:72
-msgid "Extreme Left"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:73
-msgid "Left"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:74
-msgid "Center"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:75
-msgid "Right"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:76
-msgid "Extreme Right"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:117
-msgid "Toggle icon (.svg)"
-msgstr ""
-
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:118
+#: prefs.js:30
 msgid "Icon file used for the panel toggle."
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:123
+#: prefs.js:35
 msgid "Click to change icon"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:145
+#: prefs.js:60
 msgid "Choose an icon"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:150
+#: prefs.js:65
 msgid "Images (SVG)"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:200
+#: prefs.js:118
+msgid "Behaviour"
+msgstr ""
+
+#: prefs.js:123
+msgid "Keep active window"
+msgstr ""
+
+#: prefs.js:124
+msgid "Do not hide the active window on toggle."
+msgstr ""
+
+#: prefs.js:146
+msgid "Aspect"
+msgstr ""
+
+#: prefs.js:153
+msgid "Position on panel"
+msgstr ""
+
+#: prefs.js:154
+msgid "Where to place the toggle on the panel."
+msgstr ""
+
+#: prefs.js:158
+msgid "Extreme Left"
+msgstr ""
+
+#: prefs.js:159
+msgid "Left"
+msgstr ""
+
+#: prefs.js:160
+msgid "Center"
+msgstr ""
+
+#: prefs.js:161
+msgid "Right"
+msgstr ""
+
+#: prefs.js:162
+msgid "Extreme Right"
+msgstr ""
+
+#: prefs.js:205
+msgid "Icon when windows are shown (.svg)"
+msgstr ""
+
+#: prefs.js:211
+msgid "Icon when windows are collapsed (.svg)"
+msgstr ""
+
+#: prefs.js:220
 msgid "Peek"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:207
+#: prefs.js:227
 msgid "Peek on hover"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:208
+#: prefs.js:228
 msgid "Make windows transparent when hovering the button."
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:229
+#: prefs.js:249
 msgid "Peek delay (ms)"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:230
+#: prefs.js:250
 msgid "Delay before making windows transparent."
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:256
+#: prefs.js:276
 msgid "Peek duration (ms)"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:257
+#: prefs.js:277
 msgid "Animation duration for transparency effect."
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:283
+#: prefs.js:303
 msgid "Window opacity (%)"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:284
+#: prefs.js:304
 msgid "Opacity percentage during peek (0-100)."
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:318
+#: prefs.js:338
 msgid "Shortcuts"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:323
+#: prefs.js:343
 msgid "Toggle windows"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:324
+#: prefs.js:345
 msgid "Toggle windows with your keyboard instead of a click."
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:328
+#: prefs.js:350
 msgid "New shortcut…"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:338
+#: prefs.js:360
 msgid "Set"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:347
+#: prefs.js:369
 msgid "Enter new shortcut"
 msgstr ""
 
-#: /home/pierre/Code/aero-peek-for-gnome/prefs.js:348
+#: prefs.js:370
 msgid "Press Escape to cancel"
 msgstr ""

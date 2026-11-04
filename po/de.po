@@ -66,8 +66,12 @@ msgid "Extreme Right"
 msgstr "Ganz rechts"
 
 #: prefs.js
-msgid "Toggle icon (.svg)"
-msgstr "Symbol der Schaltfläche (.svg)"
+msgid "Icon when windows are shown (.svg)"
+msgstr "Symbol bei angezeigten Fenstern (.svg)"
+
+#: prefs.js
+msgid "Icon when windows are collapsed (.svg)"
+msgstr "Symbol bei minimierten Fenstern (.svg)"
 
 #: prefs.js
 msgid "Icon file used for the panel toggle."

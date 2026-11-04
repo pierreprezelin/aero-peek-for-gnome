@@ -23,21 +23,8 @@ const AeroPeekButton = GObject.registerClass(
             super._init(0.0, extension.metadata.name, true);
             this._extension = extension;
 
-            const iconName =
-                this._extension._settings.get_string('toggle-icon');
-            const iconParams = {
-                style_class: 'system-status-icon',
-            };
-
-            if (iconName.startsWith('/')) {
-                const file = Gio.File.new_for_path(iconName);
-                iconParams.gicon = new Gio.FileIcon({file: file});
-            } else {
-                iconParams.icon_name = iconName;
-            }
-
-            const icon = new St.Icon(iconParams);
-            this.add_child(icon);
+            this._icon = new St.Icon({style_class: 'system-status-icon'});
+            this.add_child(this._icon);
 
             this.connect('enter-event', () => {
                 this._extension.previewDesktop(true);
@@ -45,6 +32,10 @@ const AeroPeekButton = GObject.registerClass(
             this.connect('leave-event', () => {
                 this._extension.previewDesktop(false);
             });
+        }
+
+        setIcon(iconName) {
+            this._icon.gicon = Gio.icon_new_for_string(iconName);
         }
 
         vfunc_event(event) {
@@ -60,20 +51,36 @@ const AeroPeekButton = GObject.registerClass(
 export default class AeroPeekForWindows extends Extension {
     enable() {
         this._settings = this.getSettings();
-        this._settingsConnections = [];
-        this._settingsConnections.push(
-            this._settings.connect('changed::position-in-panel', () =>
-                this._refreshIndicator()
-            )
+        this._signalConnections = [];
+
+        this._connect(this._settings, 'changed::position-in-panel', () =>
+            this._refreshIndicator()
         );
-        this._settingsConnections.push(
-            this._settings.connect('changed::toggle-icon', () =>
-                this._refreshIndicator()
-            )
+        this._connect(this._settings, 'changed::windows-shown-icon', () =>
+            this._updateIcon()
+        );
+        this._connect(this._settings, 'changed::windows-collapsed-icon', () =>
+            this._updateIcon()
         );
 
-        this._indicator = new AeroPeekButton(this);
-        this._addIndicatorToPanel();
+        for (const signal of ['minimize', 'unminimize', 'map']) {
+            this._connect(global.window_manager, signal, () =>
+                this._updateIcon()
+            );
+        }
+        this._connect(global.window_manager, 'destroy', (_wm, actor) =>
+            this._updateIcon(actor.meta_window)
+        );
+        this._connect(
+            global.workspace_manager,
+            'active-workspace-changed',
+            () => this._updateIcon()
+        );
+        this._connect(global.display, 'notify::focus-window', () =>
+            this._updateIcon()
+        );
+
+        this._createIndicator();
 
         Main.wm.addKeybinding(
             'toggle-shortcut',
@@ -92,9 +99,9 @@ export default class AeroPeekForWindows extends Extension {
         this._indicator?.destroy();
         this._indicator = null;
 
-        for (const id of this._settingsConnections ?? [])
-            this._settings.disconnect(id);
-        this._settingsConnections = null;
+        for (const [object, id] of this._signalConnections ?? [])
+            object.disconnect(id);
+        this._signalConnections = null;
         this._settings = null;
 
         Main.wm.removeKeybinding('toggle-shortcut');
@@ -130,15 +137,42 @@ export default class AeroPeekForWindows extends Extension {
     }
 
     toggleWindows() {
-        const workspace = global.workspace_manager.get_active_workspace();
-        const windows = workspace.list_windows();
-        const validWindows = windows.filter(w => !this._shouldIgnore(w));
-        const hasUnminimized = validWindows.some(w => !w.minimized);
+        const toggleableWindows = this._getToggleableWindows();
+        const hasUnminimized = toggleableWindows.some(w => !w.minimized);
 
-        for (const w of validWindows) {
+        for (const w of toggleableWindows) {
             if (hasUnminimized) w.minimize();
             else w.unminimize();
         }
+    }
+
+    _connect(object, signal, callback) {
+        this._signalConnections.push([
+            object,
+            object.connect(signal, callback),
+        ]);
+    }
+
+    _getToggleableWindows() {
+        const workspace = global.workspace_manager.get_active_workspace();
+        return workspace.list_windows().filter(w => !this._shouldIgnore(w));
+    }
+
+    _updateIcon(closingWindow = null) {
+        const hasUnminimized = this._getToggleableWindows().some(
+            w => w !== closingWindow && !w.minimized
+        );
+        const iconKey = hasUnminimized
+            ? 'windows-shown-icon'
+            : 'windows-collapsed-icon';
+
+        this._indicator?.setIcon(this._settings.get_string(iconKey));
+    }
+
+    _createIndicator() {
+        this._indicator = new AeroPeekButton(this);
+        this._addIndicatorToPanel();
+        this._updateIcon();
     }
 
     _addIndicatorToPanel() {
@@ -157,13 +191,8 @@ export default class AeroPeekForWindows extends Extension {
     _refreshIndicator() {
         this.previewDesktop(false);
 
-        if (this._indicator) {
-            this._indicator.destroy();
-            this._indicator = null;
-        }
-
-        this._indicator = new AeroPeekButton(this);
-        this._addIndicatorToPanel();
+        this._indicator?.destroy();
+        this._createIndicator();
     }
 
     /**
