@@ -74,6 +74,10 @@ msgid "Icon when windows are collapsed (.svg)"
 msgstr "Pictogram bij geminimaliseerde vensters (.svg)"
 
 #: prefs.js
+msgid "Icon when no windows are open (.svg)"
+msgstr "Pictogram zonder geopende vensters (.svg)"
+
+#: prefs.js
 msgid "Icon file used for the panel toggle."
 msgstr "Pictogrambestand voor de paneelknop."
 

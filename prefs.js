@@ -201,6 +201,12 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
 
         groupAspect.add(
             makeIconRow(
+                'no-windows-icon',
+                _('Icon when no windows are open (.svg)')
+            )
+        );
+        groupAspect.add(
+            makeIconRow(
                 'windows-shown-icon',
                 _('Icon when windows are shown (.svg)')
             )

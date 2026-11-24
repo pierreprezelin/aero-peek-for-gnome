@@ -11,7 +11,7 @@ Show/Hide all open desktop windows with one click.
 ## Features
 
 - 🖼️ Mask (or keep) the active window
-- 🎨 Bring your own icons (windows shown / collapsed) and choose their position on the panel
+- 🎨 Bring your own icons and choose their position on the panel
 - 👻 Enable/Disable window opacity on button hover
 - ☁️ Tweak the opacity of open windows while peeking
 - ⏰ Select the hover animation duration and delay before fading open windows
@@ -36,7 +36,8 @@ Show/Hide all open desktop windows with one click.
 
 ## Version history
 
-| Version | Changes                                   |
-| ------- | ----------------------------------------- |
-| 2       | Added support for GNOME 51                |
-| 1       | Initial release with support for GNOME 50 |
+| Version | Changes                                                 |
+| ------- | ------------------------------------------------------- |
+| 3       | Separate icons for shown, collapsed and no open windows |
+| 2       | Added support for GNOME 51                              |
+| 1       | Initial release with support for GNOME 50               |

@@ -56,12 +56,15 @@ export default class AeroPeekForWindows extends Extension {
         this._connect(this._settings, 'changed::position-in-panel', () =>
             this._refreshIndicator()
         );
-        this._connect(this._settings, 'changed::windows-shown-icon', () =>
-            this._updateIcon()
-        );
-        this._connect(this._settings, 'changed::windows-collapsed-icon', () =>
-            this._updateIcon()
-        );
+        for (const key of [
+            'windows-shown-icon',
+            'windows-collapsed-icon',
+            'no-windows-icon',
+        ]) {
+            this._connect(this._settings, `changed::${key}`, () =>
+                this._updateIcon()
+            );
+        }
 
         for (const signal of ['minimize', 'unminimize', 'map']) {
             this._connect(global.window_manager, signal, () =>
@@ -111,17 +114,14 @@ export default class AeroPeekForWindows extends Extension {
         if (!this._settings) return;
         if (enable && !this._settings.get_boolean('peek-on-hover')) return;
 
-        const workspace = global.workspace_manager.get_active_workspace();
-        const windows = workspace.list_windows();
         const peekOpacity = enable
             ? (this._settings.get_int('peek-opacity') / 100) * 255
             : 255;
         const peekDuration = this._settings.get_int('peek-duration');
         const peekDelay = enable ? this._settings.get_int('peek-delay') : 0;
 
-        windows.forEach(w => {
+        this._getToggleableWindows().forEach(w => {
             if (w.minimized) return;
-            if (this._shouldIgnore(w)) return;
 
             const actor = w.get_compositor_private();
             if (actor) {
@@ -153,18 +153,21 @@ export default class AeroPeekForWindows extends Extension {
         ]);
     }
 
-    _getToggleableWindows() {
+    _getUserWindows() {
         const workspace = global.workspace_manager.get_active_workspace();
-        return workspace.list_windows().filter(w => !this._shouldIgnore(w));
+        return workspace.list_windows().filter(w => !this._isSystemWindow(w));
+    }
+
+    _getToggleableWindows() {
+        return this._getUserWindows().filter(w => !this._isKeptActive(w));
     }
 
     _updateIcon(closingWindow = null) {
-        const hasUnminimized = this._getToggleableWindows().some(
-            w => w !== closingWindow && !w.minimized
-        );
-        const iconKey = hasUnminimized
-            ? 'windows-shown-icon'
-            : 'windows-collapsed-icon';
+        const windows = this._getUserWindows().filter(w => w !== closingWindow);
+        let iconKey = 'windows-collapsed-icon';
+        if (windows.length === 0) iconKey = 'no-windows-icon';
+        else if (windows.some(w => !w.minimized))
+            iconKey = 'windows-shown-icon';
 
         this._indicator?.setIcon(this._settings.get_string(iconKey));
     }
@@ -195,21 +198,17 @@ export default class AeroPeekForWindows extends Extension {
         this._createIndicator();
     }
 
+    _isKeptActive(window) {
+        return (
+            window === global.display.get_focus_window() &&
+            this._settings.get_boolean('keep-active-window')
+        );
+    }
+
     /**
-     * Filter out windows that should be excluded from toggle behaviour, such as system windows.
      * (from https://github.com/amivaleo/Show-Desktop-Button)
      */
-    _shouldIgnore(window) {
-        if (!window) return true;
-
-        const focusedWindow = global.display.get_focus_window();
-        if (
-            window === focusedWindow &&
-            this._settings.get_boolean('keep-active-window')
-        ) {
-            return true;
-        }
-
+    _isSystemWindow(window) {
         const windowType = window.get_window_type();
         if (
             windowType === Meta.WindowType.DESKTOP ||

@@ -3,7 +3,7 @@
     "description": "Show/Hide all open desktop windows with one click.",
     "gettext-domain": "aero-peek-for-gnome",
     "name": "Aero Peek for GNOME",
-    "version": 2,
+    "version": 3,
     "shell-version": ["50", "51"],
     "url": "https://github.com/pierreprezelin/aero-peek-for-gnome",
     "uuid": "aero-peek-for-gnome@pierreprezelin.com",

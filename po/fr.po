@@ -74,6 +74,10 @@ msgid "Icon when windows are collapsed (.svg)"
 msgstr "Icône quand les fenêtres sont réduites (.svg)"
 
 #: prefs.js
+msgid "Icon when no windows are open (.svg)"
+msgstr "Icône quand aucune fenêtre n'est ouverte (.svg)"
+
+#: prefs.js
 msgid "Icon file used for the panel toggle."
 msgstr "Fichier d'icône utilisé pour le bouton du panneau."
 

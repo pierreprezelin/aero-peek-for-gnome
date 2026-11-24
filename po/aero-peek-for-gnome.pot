@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aero-peek-for-gnome 1\n"
 "Report-Msgid-Bugs-To: pierreprezelin.pro@gmail.com\n"
-"POT-Creation-Date: 2026-11-04 21:01+0100\n"
+"POT-Creation-Date: 2026-11-04 21:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:21 prefs.js:187 prefs.js:400
+#: prefs.js:21 prefs.js:187 prefs.js:406
 msgid "Reset to default"
 msgstr ""
 
@@ -82,73 +82,77 @@ msgid "Extreme Right"
 msgstr ""
 
 #: prefs.js:205
-msgid "Icon when windows are shown (.svg)"
+msgid "Icon when no windows are open (.svg)"
 msgstr ""
 
 #: prefs.js:211
+msgid "Icon when windows are shown (.svg)"
+msgstr ""
+
+#: prefs.js:217
 msgid "Icon when windows are collapsed (.svg)"
 msgstr ""
 
-#: prefs.js:220
+#: prefs.js:226
 msgid "Peek"
 msgstr ""
 
-#: prefs.js:227
+#: prefs.js:233
 msgid "Peek on hover"
 msgstr ""
 
-#: prefs.js:228
+#: prefs.js:234
 msgid "Make windows transparent when hovering the button."
 msgstr ""
 
-#: prefs.js:249
+#: prefs.js:255
 msgid "Peek delay (ms)"
 msgstr ""
 
-#: prefs.js:250
+#: prefs.js:256
 msgid "Delay before making windows transparent."
 msgstr ""
 
-#: prefs.js:276
+#: prefs.js:282
 msgid "Peek duration (ms)"
 msgstr ""
 
-#: prefs.js:277
+#: prefs.js:283
 msgid "Animation duration for transparency effect."
 msgstr ""
 
-#: prefs.js:303
+#: prefs.js:309
 msgid "Window opacity (%)"
 msgstr ""
 
-#: prefs.js:304
+#: prefs.js:310
 msgid "Opacity percentage during peek (0-100)."
 msgstr ""
 
-#: prefs.js:338
+#: prefs.js:344
 msgid "Shortcuts"
 msgstr ""
 
-#: prefs.js:343
+#: prefs.js:349
 msgid "Toggle windows"
 msgstr ""
 
-#: prefs.js:345
+#: prefs.js:351
 msgid "Toggle windows with your keyboard instead of a click."
 msgstr ""
 
-#: prefs.js:350
+#: prefs.js:356
 msgid "New shortcut…"
 msgstr ""
 
-#: prefs.js:360
+#: prefs.js:366
 msgid "Set"
 msgstr ""
 
-#: prefs.js:369
+#: prefs.js:375
 msgid "Enter new shortcut"
 msgstr ""
 
-#: prefs.js:370
+#: prefs.js:376
 msgid "Press Escape to cancel"
 msgstr ""

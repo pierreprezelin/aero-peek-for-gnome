@@ -12,6 +12,11 @@
             <summary>Position on panel</summary>
             <description>Where to place the toggle on the panel.</description>
         </key>
+        <key name="no-windows-icon" type="s">
+            <default>'computer-symbolic'</default>
+            <summary>Icon when no windows are open (.svg)</summary>
+            <description>Icon file used for the panel toggle.</description>
+        </key>
         <key name="windows-shown-icon" type="s">
             <default>'computer-symbolic'</default>
             <summary>Icon when windows are shown (.svg)</summary>
