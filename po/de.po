@@ -78,8 +78,16 @@ msgid "Icon when no windows are open (.svg)"
 msgstr "Symbol ohne geöffnete Fenster (.svg)"
 
 #: prefs.js
-msgid "Icon file used for the panel toggle."
-msgstr "Symboldatei für die Leisten-Schaltfläche."
+msgid "Displayed when the workspace is empty."
+msgstr "Angezeigt, wenn die Arbeitsfläche leer ist."
+
+#: prefs.js
+msgid "Displayed while windows are visible, click collapses them."
+msgstr "Angezeigt, wenn Fenster sichtbar sind; ein Klick minimiert sie."
+
+#: prefs.js
+msgid "Displayed while windows are collapsed, click restores them."
+msgstr "Angezeigt, wenn Fenster minimiert sind; ein Klick stellt sie wieder her."
 
 #: prefs.js
 msgid "Click to change icon"

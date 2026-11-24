@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aero-peek-for-gnome 1\n"
 "Report-Msgid-Bugs-To: pierreprezelin.pro@gmail.com\n"
-"POT-Creation-Date: 2026-11-04 21:51+0100\n"
+"POT-Creation-Date: 2026-11-24 23:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:21 prefs.js:187 prefs.js:406
+#: prefs.js:21 prefs.js:187 prefs.js:409
 msgid "Reset to default"
-msgstr ""
-
-#: prefs.js:30
-msgid "Icon file used for the panel toggle."
 msgstr ""
 
 #: prefs.js:35
@@ -85,74 +81,86 @@ msgstr ""
 msgid "Icon when no windows are open (.svg)"
 msgstr ""
 
-#: prefs.js:211
+#: prefs.js:206
+msgid "Displayed when the workspace is empty."
+msgstr ""
+
+#: prefs.js:212
 msgid "Icon when windows are shown (.svg)"
 msgstr ""
 
-#: prefs.js:217
+#: prefs.js:213
+msgid "Displayed while windows are visible, click collapses them."
+msgstr ""
+
+#: prefs.js:219
 msgid "Icon when windows are collapsed (.svg)"
 msgstr ""
 
-#: prefs.js:226
+#: prefs.js:220
+msgid "Displayed while windows are collapsed, click restores them."
+msgstr ""
+
+#: prefs.js:229
 msgid "Peek"
 msgstr ""
 
-#: prefs.js:233
+#: prefs.js:236
 msgid "Peek on hover"
 msgstr ""
 
-#: prefs.js:234
+#: prefs.js:237
 msgid "Make windows transparent when hovering the button."
 msgstr ""
 
-#: prefs.js:255
+#: prefs.js:258
 msgid "Peek delay (ms)"
 msgstr ""
 
-#: prefs.js:256
+#: prefs.js:259
 msgid "Delay before making windows transparent."
 msgstr ""
 
-#: prefs.js:282
+#: prefs.js:285
 msgid "Peek duration (ms)"
 msgstr ""
 
-#: prefs.js:283
+#: prefs.js:286
 msgid "Animation duration for transparency effect."
 msgstr ""
 
-#: prefs.js:309
+#: prefs.js:312
 msgid "Window opacity (%)"
 msgstr ""
 
-#: prefs.js:310
+#: prefs.js:313
 msgid "Opacity percentage during peek (0-100)."
 msgstr ""
 
-#: prefs.js:344
+#: prefs.js:347
 msgid "Shortcuts"
 msgstr ""
 
-#: prefs.js:349
+#: prefs.js:352
 msgid "Toggle windows"
 msgstr ""
 
-#: prefs.js:351
+#: prefs.js:354
 msgid "Toggle windows with your keyboard instead of a click."
 msgstr ""
 
-#: prefs.js:356
+#: prefs.js:359
 msgid "New shortcut…"
 msgstr ""
 
-#: prefs.js:366
+#: prefs.js:369
 msgid "Set"
 msgstr ""
 
-#: prefs.js:375
+#: prefs.js:378
 msgid "Enter new shortcut"
 msgstr ""
 
-#: prefs.js:376
+#: prefs.js:379
 msgid "Press Escape to cancel"
 msgstr ""

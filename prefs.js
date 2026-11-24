@@ -24,10 +24,10 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
             return btn;
         };
 
-        const makeIconRow = (key, title) => {
+        const makeIconRow = (key, title, subtitle) => {
             const iconRow = new Adw.ActionRow({
                 title,
-                subtitle: _('Icon file used for the panel toggle.'),
+                subtitle,
             });
 
             const iconButton = new Gtk.Button({
@@ -202,19 +202,22 @@ export default class AeroPeekPreferences extends ExtensionPreferences {
         groupAspect.add(
             makeIconRow(
                 'no-windows-icon',
-                _('Icon when no windows are open (.svg)')
+                _('Icon when no windows are open (.svg)'),
+                _('Displayed when the workspace is empty.')
             )
         );
         groupAspect.add(
             makeIconRow(
                 'windows-shown-icon',
-                _('Icon when windows are shown (.svg)')
+                _('Icon when windows are shown (.svg)'),
+                _('Displayed while windows are visible, click collapses them.')
             )
         );
         groupAspect.add(
             makeIconRow(
                 'windows-collapsed-icon',
-                _('Icon when windows are collapsed (.svg)')
+                _('Icon when windows are collapsed (.svg)'),
+                _('Displayed while windows are collapsed, click restores them.')
             )
         );
 
