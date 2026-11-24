@@ -36,8 +36,9 @@ Show/Hide all open desktop windows with one click.
 
 ## Version history
 
-| Version | Changes                                                 |
-| ------- | ------------------------------------------------------- |
-| 3       | Separate icons for shown, collapsed and no open windows |
-| 2       | Added support for GNOME 51                              |
-| 1       | Initial release with support for GNOME 50               |
+| Version | Changes                                                         |
+| ------- | --------------------------------------------------------------- |
+| 4       | Set distinct default icons and descriptions for toggle states   |
+| 3       | Separate icons for shown, collapsed and no open windows         |
+| 2       | Added support for GNOME 51                                      |
+| 1       | Initial release with support for GNOME 50                       |
